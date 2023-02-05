@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { db, postProject } from '../API/api';
 
 declare global {
   interface Window {
@@ -7,7 +8,7 @@ declare global {
   }
 }
 
-interface Project {
+export interface Project {
   title: string;
   deploy: string;
   repo: string;
@@ -42,10 +43,10 @@ export const NewProject = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(project);
-    //postProject(project)
+    await postProject(db, project).then((res) => console.log(res));
   };
 
   /* ---------- INICIO DE LA FUNCION DE CLOUDINARY ---------- */
@@ -69,66 +70,83 @@ export const NewProject = () => {
   };
   /* ---------- FIN DE LA FUNCION DE CLOUDINARY ---------- */
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Subí tu proyecto!</h1>
-      <div className='form-group'>
-        <label htmlFor='title'>Nombre del proyecto</label>
-        <input
-          type='text'
-          className='form-control'
-          name='title'
-          onChange={handleChange}
-        />
+    <form onSubmit={handleSubmit} className='container'>
+      <div className='row'>
+        <div className='col-6'>
+          <div className='form-group'>
+            <label htmlFor='title' className='form-label'>
+              Nombre del proyecto
+            </label>
+            <input
+              type='text'
+              className='form-control'
+              name='title'
+              onChange={handleChange}
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='deploy' className='form-label'>
+              Enlace al deploy
+            </label>
+            <input
+              type='text'
+              className='form-control'
+              name='deploy'
+              onChange={handleChange}
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='repo' className='form-label'>
+              Enlace al repo
+            </label>
+            <input
+              type='text'
+              className='form-control'
+              name='repo'
+              onChange={handleChange}
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='video' className='form-label'>
+              Enlace al video del proyecto
+            </label>
+            <input
+              type='text'
+              className='form-control'
+              name='video'
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className='form-group'>
+            <label htmlFor='description' className='form-label'>
+              Describí el proyecto
+            </label>
+            <textarea
+              name='description'
+              onChange={handleChange}
+              className='form-control'
+              id='exampleFormControlTextarea1'
+              rows={10}
+            ></textarea>
+          </div>
+        </div>
+        <div className='col-6'>
+          <div className='form-group'>
+            <button
+              id='upload_widget'
+              className='btn btn-primary'
+              type='button'
+              name='imgs'
+              onClick={() => handleOpenWidget()}
+            >
+              Cargar imagenes
+            </button>
+          </div>
+        </div>
       </div>
-      <div className='form-group'>
-        <label htmlFor='deploy'>Enlace al deploy</label>
-        <input
-          type='text'
-          className='form-control'
-          name='deploy'
-          onChange={handleChange}
-        />
-      </div>
-      <div className='form-group'>
-        <label htmlFor='repo'>Enlace al repo</label>
-        <input
-          type='text'
-          className='form-control'
-          name='repo'
-          onChange={handleChange}
-        />
-      </div>
-      <div className='form-group'>
-        <label htmlFor='video'>Enlace al video del proyecto</label>
-        <input
-          type='text'
-          className='form-control'
-          name='video'
-          onChange={handleChange}
-        />
-      </div>
-      <div className='form-group'>
-        <button
-          id='upload_widget'
-          className='btn btn-primary'
-          type='button'
-          name='imgs'
-          onClick={() => handleOpenWidget()}
-        >
-          Cargar imagenes
-        </button>
-      </div>
-      <div className='form-group'>
-        <label htmlFor='description'>Describí el proyecto</label>
-        <textarea
-          name='description'
-          onChange={handleChange}
-          className='form-control'
-          id='exampleFormControlTextarea1'
-          rows={10}
-        ></textarea>
-      </div>
-      <button type='submit' className='btn btn-outline-success'>
+
+      <button type='submit' className='btn btn-outline-success w-50'>
         Success
       </button>
     </form>
