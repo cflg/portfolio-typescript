@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { db, postProject } from '../API/api';
-
+import './NewProject.css';
+import { ImageList } from '@mui/material';
 declare global {
   interface Window {
     cloudinary: any;
@@ -49,6 +50,13 @@ export const NewProject = () => {
     await postProject(db, project).then((res) => console.log(res));
   };
 
+  const deleteImage = (e: React.ChangeEvent<HTMLImageElement>) => {
+    setProject({
+      ...project,
+      imgs: project.imgs.filter((el) => el !== e.target.value),
+    });
+  };
+
   /* ---------- INICIO DE LA FUNCION DE CLOUDINARY ---------- */
   const handleOpenWidget = async () => {
     var myWidget = await window.cloudinary.createUploadWidget(
@@ -85,7 +93,7 @@ export const NewProject = () => {
             />
           </div>
           <div className='form-group'>
-            <label htmlFor='deploy' className='form-label'>
+            <label htmlFor='deploy' className='form-label labels'>
               Enlace al deploy
             </label>
             <input
@@ -96,7 +104,7 @@ export const NewProject = () => {
             />
           </div>
           <div className='form-group'>
-            <label htmlFor='repo' className='form-label'>
+            <label htmlFor='repo' className='form-label labels'>
               Enlace al repo
             </label>
             <input
@@ -107,7 +115,7 @@ export const NewProject = () => {
             />
           </div>
           <div className='form-group'>
-            <label htmlFor='video' className='form-label'>
+            <label htmlFor='video' className='form-label labels'>
               Enlace al video del proyecto
             </label>
             <input
@@ -119,7 +127,7 @@ export const NewProject = () => {
           </div>
 
           <div className='form-group'>
-            <label htmlFor='description' className='form-label'>
+            <label htmlFor='description' className='form-label labels'>
               Describí el proyecto
             </label>
             <textarea
@@ -131,11 +139,11 @@ export const NewProject = () => {
             ></textarea>
           </div>
         </div>
-        <div className='col-6'>
+        <div className='col-6 imgs'>
           <div className='form-group'>
             <button
               id='upload_widget'
-              className='btn btn-primary'
+              className='btn btn-primary btn-img w-100'
               type='button'
               name='imgs'
               onClick={() => handleOpenWidget()}
@@ -143,11 +151,22 @@ export const NewProject = () => {
               Cargar imagenes
             </button>
           </div>
+          <div className='row'>
+            {project.imgs &&
+              project.imgs.map((img) => (
+                <div className='div-img'>
+                  <img
+                    src={img}
+                    className='img-loaded m-2'
+                    onClick={(e) => deleteImage(e)}
+                  />
+                </div>
+              ))}
+          </div>
         </div>
       </div>
-
-      <button type='submit' className='btn btn-outline-success w-50'>
-        Success
+      <button type='submit' className='btn btn-outline-success w-50 '>
+        Subir mi proyecto
       </button>
     </form>
   );

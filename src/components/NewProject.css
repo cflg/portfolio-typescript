@@ -1,0 +1,23 @@
+.imgs {
+  border: 1px solid #d8d7d7;
+  border-radius: 0.375rem;
+}
+.row {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.btn-img {
+  margin-top: 10px;
+}
+.img-loaded {
+  max-height: 100px;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+.div-img {
+  width: min-content;
+  padding: 0;
+}
+.labels {
+  margin-top: 20px;
+}
