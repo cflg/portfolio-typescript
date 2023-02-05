@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import { db, postProject } from '../API/api';
+import Swal from 'sweetalert2';
 import './NewProject.css';
-import { ImageList } from '@mui/material';
+
+/* INTERFACES Y ELEMENTOS DE TYPESCRIPT */
+
 declare global {
   interface Window {
     cloudinary: any;
@@ -27,7 +30,10 @@ interface CloudinaryResult {
 
 type FormElements = HTMLInputElement | HTMLTextAreaElement;
 
+/* INICIO DEL COMPONENTE */
+
 export const NewProject = () => {
+  /* ESTADO PARA ALMACENAR DATOS DEL FORMULARIO */
   const [project, setProject] = useState<Project>({
     title: '',
     deploy: '',
@@ -35,6 +41,20 @@ export const NewProject = () => {
     video: '',
     description: '',
     imgs: [],
+  });
+
+  /* CONFIGURACION DE SWEETALERT2 */
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer);
+      toast.addEventListener('mouseleave', Swal.resumeTimer);
+    },
   });
 
   const handleChange = (e: React.ChangeEvent<FormElements>) => {
@@ -45,15 +65,33 @@ export const NewProject = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    //Esta linea es para que no se recargue la pagina
     e.preventDefault();
-    console.log(project);
-    await postProject(db, project).then((res) => console.log(res));
+    //funcion para agregar proyectos a la db
+    await postProject(db, project);
+    //Este set sirve para limpiar los inputs cuando se postea un proyecto
+    setProject({
+      title: '',
+      deploy: '',
+      repo: '',
+      video: '',
+      description: '',
+      imgs: [],
+    });
+    //Dispara un mensaje cuando se envia la info
+    Toast.fire({
+      icon: 'success',
+      title: 'Proyecto publicado!',
+    });
   };
-
-  const deleteImage = (e: React.ChangeEvent<HTMLImageElement>) => {
+  //Esta funcion sirve para eliminar imagenes cuando se clickea sobre ellas
+  const deleteImage = (event: React.MouseEvent<HTMLImageElement>) => {
+    //Estas const las debo incluir para que TS tome los tipos correctamente
+    const target = event.target as HTMLImageElement;
+    const imageSrc = target.src;
     setProject({
       ...project,
-      imgs: project.imgs.filter((el) => el !== e.target.value),
+      imgs: project.imgs.filter((el) => el !== imageSrc),
     });
   };
 
@@ -79,7 +117,7 @@ export const NewProject = () => {
   /* ---------- FIN DE LA FUNCION DE CLOUDINARY ---------- */
   return (
     <form onSubmit={handleSubmit} className='container'>
-      <div className='row'>
+      <div className='row elm-cont'>
         <div className='col-6'>
           <div className='form-group'>
             <label htmlFor='title' className='form-label'>
@@ -89,6 +127,7 @@ export const NewProject = () => {
               type='text'
               className='form-control'
               name='title'
+              value={project.title}
               onChange={handleChange}
             />
           </div>
@@ -100,6 +139,7 @@ export const NewProject = () => {
               type='text'
               className='form-control'
               name='deploy'
+              value={project.deploy}
               onChange={handleChange}
             />
           </div>
@@ -111,6 +151,7 @@ export const NewProject = () => {
               type='text'
               className='form-control'
               name='repo'
+              value={project.repo}
               onChange={handleChange}
             />
           </div>
@@ -122,6 +163,7 @@ export const NewProject = () => {
               type='text'
               className='form-control'
               name='video'
+              value={project.video}
               onChange={handleChange}
             />
           </div>
@@ -134,7 +176,7 @@ export const NewProject = () => {
               name='description'
               onChange={handleChange}
               className='form-control'
-              id='exampleFormControlTextarea1'
+              value={project.description}
               rows={10}
             ></textarea>
           </div>
@@ -150,8 +192,11 @@ export const NewProject = () => {
             >
               Cargar imagenes
             </button>
+            <p className='img-msg'>
+              Para eliminar una imágen clickea sobre ella
+            </p>
           </div>
-          <div className='row'>
+          <div className='row img-cont'>
             {project.imgs &&
               project.imgs.map((img) => (
                 <div className='div-img'>
