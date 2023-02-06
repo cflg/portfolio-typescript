@@ -39,16 +39,11 @@ export const postProject = async (db: Firestore, project: Project) => {
   }
 };
 //Obtengo todas las respuestas de la base de datos que antes fueron agregadas con el formulario
-/* export const getResponses = async (db) => {
+export const getProjects = async (db: Firestore) => {
   try {
-    const allResponses = await getDocs(collection(db, 'form'));
-    console.log(
-      'FIRESTORE',
-      allResponses.docs.map((e) => e.data())
-    );
+    const allResponses = await getDocs(collection(db, 'project'));
     return allResponses.docs.map((e) => e.data());
   } catch (error) {
     console.log(error);
   }
 };
- */

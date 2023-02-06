@@ -1,0 +1,12 @@
+.card-img {
+  max-height: 300px;
+  object-fit: cover;
+  width: 100%;
+}
+.card-box {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.card-more {
+  margin-top: 20px;
+}

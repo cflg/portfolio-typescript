@@ -11,17 +11,17 @@ export const Social = (): JSX.Element => {
 
       <div className='container row'>
         <div className='col-4 footer-icons'>
-          <a href='https://www.linkedin.com/in/cristian-lg/'>
+          <a href='https://www.linkedin.com/in/cristian-lg/' target='_blank'>
             <GrLinkedin size={80} className='linkedin' />
           </a>
         </div>
         <div className='col-4 footer-icons'>
-          <a href='https://github.com/cflg' className='col-4'>
+          <a href='https://github.com/cflg' className='col-4' target='_blank'>
             <GrGithub size={80} className='linkedin' />
           </a>
         </div>
         <div className='col-4 footer-icons'>
-          <a href='https://twitter.com/CFLG_' className='col-4'>
+          <a href='https://twitter.com/CFLG_' className='col-4' target='_blank'>
             <GrTwitter size={80} className='linkedin' />
           </a>
         </div>
