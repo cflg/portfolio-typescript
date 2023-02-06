@@ -8,7 +8,6 @@ export const UserActions = () => {
     <>
       <Header />
       <NewProject />
-      <Footer />
     </>
   );
 };
