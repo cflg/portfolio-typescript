@@ -1,5 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
+import Swal from 'sweetalert2';
+import './NewProject.css';
+import axios from 'axios';
+
+/* INTERFACES Y ELEMENTOS DE TYPESCRIPT */
 
 declare global {
   interface Window {
@@ -7,7 +12,7 @@ declare global {
   }
 }
 
-interface Project {
+export interface Project {
   title: string;
   deploy: string;
   repo: string;
@@ -25,7 +30,10 @@ interface CloudinaryResult {
 
 type FormElements = HTMLInputElement | HTMLTextAreaElement;
 
+/* INICIO DEL COMPONENTE */
+
 export const NewProject = () => {
+  /* ESTADO PARA ALMACENAR DATOS DEL FORMULARIO */
   const [project, setProject] = useState<Project>({
     title: '',
     deploy: '',
@@ -35,6 +43,20 @@ export const NewProject = () => {
     imgs: [],
   });
 
+  /* CONFIGURACION DE SWEETALERT2 */
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer);
+      toast.addEventListener('mouseleave', Swal.resumeTimer);
+    },
+  });
+
   const handleChange = (e: React.ChangeEvent<FormElements>) => {
     setProject({
       ...project,
@@ -42,10 +64,38 @@ export const NewProject = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    //Esta linea es para que no se recargue la pagina
     e.preventDefault();
-    console.log(project);
-    //postProject(project)
+    //funcion para agregar proyectos a la db
+    await axios.post(
+      'https://portfolio-back-production-ca39.up.railway.app/projects',
+      project
+    );
+    //Este set sirve para limpiar los inputs cuando se postea un proyecto
+    setProject({
+      title: '',
+      deploy: '',
+      repo: '',
+      video: '',
+      description: '',
+      imgs: [],
+    });
+    //Dispara un mensaje cuando se envia la info
+    Toast.fire({
+      icon: 'success',
+      title: 'Proyecto publicado!',
+    });
+  };
+  //Esta funcion sirve para eliminar imagenes cuando se clickea sobre ellas
+  const deleteImage = (event: React.MouseEvent<HTMLImageElement>) => {
+    //Estas const las debo incluir para que TS tome los tipos correctamente
+    const target = event.target as HTMLImageElement;
+    const imageSrc = target.src;
+    setProject({
+      ...project,
+      imgs: project.imgs.filter((el) => el !== imageSrc),
+    });
   };
 
   /* ---------- INICIO DE LA FUNCION DE CLOUDINARY ---------- */
@@ -69,67 +119,102 @@ export const NewProject = () => {
   };
   /* ---------- FIN DE LA FUNCION DE CLOUDINARY ---------- */
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Subí tu proyecto!</h1>
-      <div className='form-group'>
-        <label htmlFor='title'>Nombre del proyecto</label>
-        <input
-          type='text'
-          className='form-control'
-          name='title'
-          onChange={handleChange}
-        />
+    <form onSubmit={handleSubmit} className='container'>
+      <div className='row elm-cont'>
+        <div className='col-6'>
+          <div className='form-group'>
+            <label htmlFor='title' className='form-label'>
+              Nombre del proyecto
+            </label>
+            <input
+              type='text'
+              className='form-control'
+              name='title'
+              value={project.title}
+              onChange={handleChange}
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='deploy' className='form-label labels'>
+              Enlace al deploy
+            </label>
+            <input
+              type='text'
+              className='form-control'
+              name='deploy'
+              value={project.deploy}
+              onChange={handleChange}
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='repo' className='form-label labels'>
+              Enlace al repo
+            </label>
+            <input
+              type='text'
+              className='form-control'
+              name='repo'
+              value={project.repo}
+              onChange={handleChange}
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='video' className='form-label labels'>
+              Enlace al video del proyecto
+            </label>
+            <input
+              type='text'
+              className='form-control'
+              name='video'
+              value={project.video}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className='form-group'>
+            <label htmlFor='description' className='form-label labels'>
+              Describí el proyecto
+            </label>
+            <textarea
+              name='description'
+              onChange={handleChange}
+              className='form-control'
+              value={project.description}
+              rows={10}
+            ></textarea>
+          </div>
+        </div>
+        <div className='col-6 imgs'>
+          <div className='form-group'>
+            <button
+              id='upload_widget'
+              className='btn btn-primary btn-img w-100'
+              type='button'
+              name='imgs'
+              onClick={() => handleOpenWidget()}
+            >
+              Cargar imagenes
+            </button>
+            <p className='img-msg'>
+              Para eliminar una imágen clickea sobre ella
+            </p>
+          </div>
+          <div className='row img-cont'>
+            {project.imgs &&
+              project.imgs.map((img) => (
+                <div className='div-img'>
+                  <img
+                    src={img}
+                    className='img-loaded m-2'
+                    onClick={(e) => deleteImage(e)}
+                  />
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
-      <div className='form-group'>
-        <label htmlFor='deploy'>Enlace al deploy</label>
-        <input
-          type='text'
-          className='form-control'
-          name='deploy'
-          onChange={handleChange}
-        />
-      </div>
-      <div className='form-group'>
-        <label htmlFor='repo'>Enlace al repo</label>
-        <input
-          type='text'
-          className='form-control'
-          name='repo'
-          onChange={handleChange}
-        />
-      </div>
-      <div className='form-group'>
-        <label htmlFor='video'>Enlace al video del proyecto</label>
-        <input
-          type='text'
-          className='form-control'
-          name='video'
-          onChange={handleChange}
-        />
-      </div>
-      <div className='form-group'>
-        <button
-          id='upload_widget'
-          className='btn btn-primary'
-          type='button'
-          name='imgs'
-          onClick={() => handleOpenWidget()}
-        >
-          Cargar imagenes
-        </button>
-      </div>
-      <div className='form-group'>
-        <label htmlFor='description'>Describí el proyecto</label>
-        <textarea
-          name='description'
-          onChange={handleChange}
-          className='form-control'
-          id='exampleFormControlTextarea1'
-          rows={10}
-        ></textarea>
-      </div>
-      <button type='submit' className='btn btn-outline-success'>
-        Success
+      <button type='submit' className='btn btn-outline-success w-50 '>
+        Subir mi proyecto
       </button>
     </form>
   );
