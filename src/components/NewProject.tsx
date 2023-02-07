@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import { db, postProject } from '../API/api';
 import Swal from 'sweetalert2';
 import './NewProject.css';
+import axios from 'axios';
 
 /* INTERFACES Y ELEMENTOS DE TYPESCRIPT */
 
@@ -68,7 +68,10 @@ export const NewProject = () => {
     //Esta linea es para que no se recargue la pagina
     e.preventDefault();
     //funcion para agregar proyectos a la db
-    await postProject(db, project);
+    await axios.post(
+      'https://portfolio-back-production-ca39.up.railway.app/projects',
+      project
+    );
     //Este set sirve para limpiar los inputs cuando se postea un proyecto
     setProject({
       title: '',
