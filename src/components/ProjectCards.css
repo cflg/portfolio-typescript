@@ -6,6 +6,8 @@
 .card-box {
   margin-top: 20px;
   margin-bottom: 20px;
+  margin-left: 0;
+  margin-right: 0;
 }
 .card-more {
   margin-top: 20px;
