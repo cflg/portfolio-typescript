@@ -19,21 +19,7 @@ export interface Project {
   imgs: string[];
 }
 
-interface Props {
-  className: string;
-  src: string;
-  frameborder: string;
-  allow: string;
-  allowfullscreen: boolean;
-}
-
-export const ProjectsDetails: React.FC<Props> = ({
-  className,
-  src,
-  frameborder,
-  allow,
-  allowfullscreen,
-}) => {
+export const ProjectsDetails = () => {
   const { id } = useParams<Params>();
 
   const [projectDetails, setProjectDetails] = useState<Project>();
