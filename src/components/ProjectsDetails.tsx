@@ -30,8 +30,11 @@ export const ProjectsDetails = () => {
         `https://portfolio-back-production-ca39.up.railway.app/projects/${id}`
       )
       .then((res) => {
-        setProjectDetails(res.data);
-      });
+        setProjectDetails(res.data)
+      })
+    .catch(error => {
+    console.log(error)
+  })
   }, [id]);
   console.log(projectDetails);
   return (
