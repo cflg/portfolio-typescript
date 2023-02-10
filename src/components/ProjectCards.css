@@ -12,3 +12,20 @@
 .card-more {
   margin-top: 20px;
 }
+.img-card-container {
+  width: 100%; /* Ancho completo del contenedor */
+  height: 0; /* Altura inicial en 0 */
+  padding-bottom: 56.25%; /* Proporción 16:9, 56.25% es equivalente a 9/16 */
+  position: relative; /* Posición relativa para que los hijos se posicionen correctamente */
+}
+.img-card-container img {
+  position: absolute; /* Posición absoluta para que la imagen se posicione correctamente dentro del contenedor */
+  top: 0; /* Arriba */
+  left: 0; /* Izquierda */
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Altura completa */
+  object-fit: cover; /* Ajuste de imagen para que la imagen se ajuste al contenedor */
+}
+.card-title {
+  font-size: 2rem;
+}

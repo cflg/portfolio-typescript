@@ -59,10 +59,28 @@ export const NewProject = () => {
   });
 
   const handleChange = (e: React.ChangeEvent<FormElements>) => {
+    let value = e.target.value;
+
+    // Reemplaza la url de youtube
+    if (e.target.name === 'video') {
+      value = value.replace('watch?v=', 'embed/');
+    }
+
     setProject({
       ...project,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.code === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      const value = e.currentTarget.value + '\n';
+      setProject({
+        ...project,
+        description: value,
+      });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -175,6 +193,7 @@ export const NewProject = () => {
             </label>
             <textarea
               name='description'
+              onKeyDown={handleKeyDown}
               onChange={handleChange}
               className='form-control'
               value={project.description}

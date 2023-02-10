@@ -8,7 +8,11 @@ export const ProjectDetails = () => {
   return (
     <div className='container-fluid details-container'>
       <Header />
-      <h1>detalles</h1>
+      <a href='/'>
+        <button type='button' className='btn btn-outline-secondary btn-back'>
+          ↲ Volver
+        </button>
+      </a>
       <ProjectsDetails />
       <Footer />
     </div>
