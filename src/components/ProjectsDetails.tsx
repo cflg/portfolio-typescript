@@ -25,9 +25,13 @@ export const ProjectsDetails = () => {
   const [projectDetails, setProjectDetails] = useState<Project>();
 
   useEffect(() => {
-    axios.get(`${back}/projects/${id}`).then((res) => {
-      setProjectDetails(res.data);
-    });
+    axios
+      .get(
+        `https://portfolio-back-production-ca39.up.railway.app/projects/${id}`
+      )
+      .then((res) => {
+        setProjectDetails(res.data);
+      });
   }, [id]);
   console.log(projectDetails);
   return (
