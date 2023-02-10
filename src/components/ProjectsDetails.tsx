@@ -5,6 +5,7 @@ import axios from 'axios';
 import './ProjectsDetails.css';
 import { GrGithub } from 'react-icons/gr';
 import { TbWorld } from 'react-icons/tb';
+import Swal from 'sweetalert2';
 
 interface Params {
   [key: string]: string;
@@ -24,19 +25,41 @@ export const ProjectsDetails = () => {
 
   const [projectDetails, setProjectDetails] = useState<Project>();
 
+  /* CONFIGURACION DE SWEETALERT2 */
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer);
+      toast.addEventListener('mouseleave', Swal.resumeTimer);
+    },
+  });
+
+  const handleDelete = async (
+    id: string | undefined,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    if (id) {
+      axios.delete(`${back}/projects/${id}`);
+      Toast.fire({
+        icon: 'success',
+        title: 'El proyecto fué eliminado!',
+      });
+    }
+  };
+
   useEffect(() => {
-    axios
-      .get(
-        `https://portfolio-back-production-ca39.up.railway.app/projects/${id}`
-      )
-      .then((res) => {
-        setProjectDetails(res.data)
-      })
-    .catch(error => {
-    console.log(error)
-  })
+    axios.get(`${back}/projects/${id}`).then((res) => {
+      setProjectDetails(res.data);
+    });
+    console.log('ID', id);
   }, [id]);
-  console.log(projectDetails);
+
   return (
     <div className='container-fluid '>
       <div className='container details-container'>
@@ -123,6 +146,18 @@ export const ProjectsDetails = () => {
                   </p>
                 );
               })}
+            </div>
+            <div className='container btns-box'>
+              <button
+                type='button'
+                className='btn btn-outline-danger fist-btn'
+                onClick={(event) => handleDelete(id, event)}
+              >
+                Eliminar proyecto
+              </button>
+              <button type='button' className='btn btn-outline-warning'>
+                Editar proyecto
+              </button>
             </div>
           </div>
         )}
