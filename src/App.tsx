@@ -8,9 +8,9 @@ import { ProjectDetails } from './components/ProjectDetails';
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<Home />} />
       <Route path='/admin' element={<UserActions />} />
       <Route path='/details/:id' element={<ProjectDetails />} />
+      <Route path='/' element={<Home />} />
     </Routes>
   );
 }
