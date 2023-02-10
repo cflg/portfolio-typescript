@@ -4,13 +4,14 @@ import { Home } from './pages/Home';
 import './App.css';
 import { UserActions } from './pages/UserActions';
 import { ProjectDetails } from './components/ProjectDetails';
+import { PrDetails } from './components/PrDetails';
 
 function App() {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/admin' element={<UserActions />} />
-      <Route path='/details/:id' element={<ProjectDetails />} />
+      <Route path='/details/:id' element={<PrDetails />} />
     </Routes>
   );
 }
