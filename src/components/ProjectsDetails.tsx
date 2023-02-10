@@ -27,7 +27,7 @@ export const ProjectsDetails = () => {
 
   /* CONFIGURACION DE SWEETALERT2 */
 
-  const Toast = Swal.mixin({
+  /*  const Toast = Swal.mixin({
     toast: true,
     position: 'bottom-end',
     showConfirmButton: false,
@@ -38,8 +38,8 @@ export const ProjectsDetails = () => {
       toast.addEventListener('mouseleave', Swal.resumeTimer);
     },
   });
-
-  const handleDelete = async (
+ */
+  /* const handleDelete = async (
     id: string | undefined,
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -52,12 +52,11 @@ export const ProjectsDetails = () => {
       });
     }
   };
-
+ */
   useEffect(() => {
     axios.get(`${back}/projects/${id}`).then((res) => {
       setProjectDetails(res.data);
     });
-    console.log('ID', id);
   }, [id]);
 
   return (
@@ -147,7 +146,7 @@ export const ProjectsDetails = () => {
                 );
               })}
             </div>
-            <div className='container btns-box'>
+            {/* <div className='container btns-box'>
               <button
                 type='button'
                 className='btn btn-outline-danger fist-btn'
@@ -158,7 +157,7 @@ export const ProjectsDetails = () => {
               <button type='button' className='btn btn-outline-warning'>
                 Editar proyecto
               </button>
-            </div>
+            </div> */}
           </div>
         )}
       </div>
