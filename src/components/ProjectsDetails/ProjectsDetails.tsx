@@ -5,6 +5,7 @@ import axios from 'axios';
 import './ProjectsDetails.css';
 import { GrGithub } from 'react-icons/gr';
 import { TbWorld } from 'react-icons/tb';
+import Swal from 'sweetalert2';
 
 interface Params {
   [key: string]: string;
@@ -26,7 +27,7 @@ export const ProjectsDetails = () => {
 
   /* CONFIGURACION DE SWEETALERT2 */
 
-  /* const Toast = Swal.mixin({
+  const Toast = Swal.mixin({
     toast: true,
     position: 'bottom-end',
     showConfirmButton: false,
@@ -36,7 +37,7 @@ export const ProjectsDetails = () => {
       toast.addEventListener('mouseenter', Swal.stopTimer);
       toast.addEventListener('mouseleave', Swal.resumeTimer);
     },
-  }); */
+  });
 
   const handleDelete = async (
     id: string | undefined,
@@ -45,10 +46,10 @@ export const ProjectsDetails = () => {
     event.preventDefault();
     if (id) {
       axios.delete(`${back}/projects/${id}`);
-      /* Toast.fire({
+      Toast.fire({
         icon: 'success',
         title: 'El proyecto fué eliminado!',
-      }); */
+      });
     }
   };
 
