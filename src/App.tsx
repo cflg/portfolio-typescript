@@ -4,6 +4,7 @@ import { Home } from './pages/Home/Home';
 import './App.css';
 import { UserActions } from './pages/UserActions/UserActions';
 import { ProjectDetails } from './components/ProjectDetails/ProjectDetails';
+import { Error } from './components/Error/Error';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route path='/admin' element={<UserActions />} />
       <Route path='/details/:id' element={<ProjectDetails />} />
       <Route path='/' element={<Home />} />
+      <Route path='*' element={<Error />} />
     </Routes>
   );
 }
