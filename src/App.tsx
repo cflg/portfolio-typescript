@@ -11,6 +11,7 @@ function App() {
     <Routes>
       <Route path='/admin' element={<UserActions />} />
       <Route path='/details/:id' element={<ProjectDetails />} />
+      <Route path='/error' element={<Error />} />
       <Route path='/' element={<Home />} />
       <Route path='*' element={<Error />} />
     </Routes>
