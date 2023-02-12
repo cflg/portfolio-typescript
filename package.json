@@ -28,7 +28,7 @@
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.8.0",
     "sort-by": "^0.0.2",
-    "sweetalert2": "^11.4.8",
+    "sweetalert2": "^11.7.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {
