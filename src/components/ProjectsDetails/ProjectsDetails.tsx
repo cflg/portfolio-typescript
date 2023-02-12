@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { back } from '../../urls';
+import { back } from '../../../urls';
 import axios from 'axios';
 import './ProjectsDetails.css';
 import { GrGithub } from 'react-icons/gr';

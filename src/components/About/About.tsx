@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { back } from '../../urls';
+import { back } from '../../../urls';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import './About.css';

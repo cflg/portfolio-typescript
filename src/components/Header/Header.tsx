@@ -8,6 +8,7 @@ export const Header = () => {
       <Link to='/'>Sobre mi</Link>
       <Link to='/'>Mis habilidades</Link>
       <Link to='/'>Mis proyectos</Link>
+      <Link to='/admin'>Admin</Link>
     </header>
   );
 };

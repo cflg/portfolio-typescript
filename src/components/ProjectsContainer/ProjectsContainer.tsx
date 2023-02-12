@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ProjectCards } from './ProjectCards';
+import { ProjectCards } from '../ProjectCards/ProjectCards';
 import axios from 'axios';
-import { back } from '../../urls';
+import { back } from '../../../urls';
 import './ProjectsContainer.css';
 interface Project {
   id: string;

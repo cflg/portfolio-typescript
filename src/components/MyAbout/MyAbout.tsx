@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import './MyAbout.css';
-import { back } from '../../urls';
+import { back } from '../../../urls';
 import Swal from 'sweetalert2';
 
 type FormElements = HTMLInputElement | HTMLTextAreaElement;

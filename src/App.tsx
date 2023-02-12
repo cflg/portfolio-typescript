@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Home } from './pages/Home';
+import { Home } from './pages/Home/Home';
 import './App.css';
-import { UserActions } from './pages/UserActions';
-import { ProjectDetails } from './components/ProjectDetails';
+import { UserActions } from './pages/UserActions/UserActions';
+import { ProjectDetails } from './components/ProjectDetails/ProjectDetails';
 
 function App() {
   return (

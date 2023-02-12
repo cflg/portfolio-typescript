@@ -1,8 +1,8 @@
 import React from 'react';
-import { ProjectsDetails } from './ProjectsDetails';
-import { Header } from './Header';
+import { ProjectsDetails } from '../ProjectsDetails/ProjectsDetails';
+import { Header } from '../Header/Header';
 import './ProjectDetails.css';
-import { Footer } from './Footer';
+import { Footer } from '../Footer/Footer';
 
 export const ProjectDetails = () => {
   return (

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 import './NewProject.css';
 import axios from 'axios';
-import { back } from '../../urls';
+import { back } from '../../../urls';
 
 /* INTERFACES Y ELEMENTOS DE TYPESCRIPT */
 
