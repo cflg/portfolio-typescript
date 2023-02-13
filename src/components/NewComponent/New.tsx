@@ -9,15 +9,12 @@ const New = () => {
   const [project, setProject] = useState<any>(null);
 
   useEffect(() => {
-    fetch(`${back}/projects/${id}`, {
-      method: 'GET',
-    }).then((res) => setProject(res));
+    axios.get(`${back}/projects`).then((res) => console.log(res.data));
   }, [id]);
 
   return (
     <div>
       <p>Componente nuevo</p>
-      <p>{project && project.id}</p>
     </div>
   );
 };
