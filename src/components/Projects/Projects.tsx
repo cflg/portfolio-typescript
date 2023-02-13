@@ -7,14 +7,15 @@ import { Footer } from '../Footer/Footer';
 export const Projects = () => {
   return (
     <div className='container-fluid details-container'>
-      <Header />
+      <p>Hola</p>
+      {/*  <Header />
       <a href='/'>
         <button type='button' className='btn btn-outline-secondary btn-back'>
           ↲ Volver
         </button>
-      </a>
+      </a> */}
       {/* <ProjectsDetails /> */}
-      <Footer />
+      {/*  <Footer /> */}
     </div>
   );
 };
