@@ -6,11 +6,6 @@ import './ProjectsDetails.css';
 import { GrGithub } from 'react-icons/gr';
 import { TbWorld } from 'react-icons/tb';
 import Swal from 'sweetalert2';
-
-interface Params {
-  [key: string]: string;
-}
-
 export interface Project {
   title: string;
   deploy: string;
@@ -20,9 +15,7 @@ export interface Project {
   imgs: string[];
 }
 
-export const ProjectsDetails = () => {
-  const { id } = useParams<Params>();
-
+export const ProjectsDetails = ({ id }) => {
   const [projectDetails, setProjectDetails] = useState<Project>();
 
   /* CONFIGURACION DE SWEETALERT2 */
