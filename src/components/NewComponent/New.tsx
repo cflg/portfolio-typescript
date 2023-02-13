@@ -4,15 +4,9 @@ import { back } from '../../../urls';
 import axios from 'axios';
 
 const New = () => {
-  const { id } = useParams();
+  let { id } = useParams();
 
-  //const [project, setProject] = useState();
-
-  useEffect(() => {
-    //axios.get(`${back}/projects`).then((res) => console.log(res.data));
-    console.log(id);
-  }, [id]);
-
+  console.log(id);
   return (
     <div>
       <p>Componente nuevo</p>
