@@ -6,10 +6,11 @@ import axios from 'axios';
 const New = () => {
   const { id } = useParams();
 
-  const [project, setProject] = useState<any>(null);
+  //const [project, setProject] = useState();
 
   useEffect(() => {
-    axios.get(`${back}/projects`).then((res) => console.log(res.data));
+    //axios.get(`${back}/projects`).then((res) => console.log(res.data));
+    console.log(id);
   }, [id]);
 
   return (
