@@ -9,10 +9,13 @@ const New = () => {
   const [project, setProject] = useState<any>(null);
 
   useEffect(() => {
-    axios.get(`${back}/projects/${id}`).then((res) => {
-      setProject(res.data);
-    });
-  });
+    if (id) {
+      axios.get(`${back}/projects/${id}`).then((res) => {
+        setProject(res.data);
+      });
+    }
+  }, [id]);
+
   return (
     <div>
       <p>Componente nuevo</p>
