@@ -10,7 +10,7 @@ function App() {
   return (
     <Routes>
       <Route path='/admin' element={<UserActions />} />
-      <Route path='/projects/:id' element={<Projects />} />
+      <Route path='/projects' element={<Projects />} />
       <Route path='/error' element={<Error />} />
       <Route path='/' element={<Home />} />
       <Route path='*' element={<Error />} />
