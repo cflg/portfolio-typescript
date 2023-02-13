@@ -21,7 +21,7 @@ export const ProjectCards: React.FC<ProjectCardsProps> = ({ pr }) => {
         <div className='card-body'>
           <h5 className='card-title'>{pr.title}</h5>
           <p className='card-text'>{pr.description.slice(0, 240)} (...)</p>
-          <a href={`/details/${pr.id}`} className='btn btn-primary card-more'>
+          <a href={`/projects/${pr.id}`} className='btn btn-primary card-more'>
             Ver proyecto completo
           </a>
         </div>
