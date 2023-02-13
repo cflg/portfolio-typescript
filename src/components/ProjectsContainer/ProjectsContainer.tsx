@@ -15,14 +15,11 @@ interface Project {
 
 export const ProjectsContainer = () => {
   const [projects, setProjects] = useState<Project[]>([]);
+
   useEffect(() => {
     axios.get(`${back}/projects`).then((res) => {
       setProjects(res.data);
     });
-    axios
-      .get(`${back}/projects/2e6adc00-c7a0-4913-a513-ad77a11eaa71`)
-      .then((res) => console.log('DETALLES', res));
-    console.log(projects);
   }, []);
 
   return (
