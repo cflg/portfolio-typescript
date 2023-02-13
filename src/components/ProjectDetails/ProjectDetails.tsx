@@ -13,7 +13,7 @@ export const ProjectDetails = () => {
           ↲ Volver
         </button>
       </a>
-      <ProjectsDetails />
+      {/* <ProjectsDetails /> */}
       <Footer />
     </div>
   );
