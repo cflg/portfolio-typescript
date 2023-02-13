@@ -19,7 +19,7 @@ interface Params {
 }
 
 export const ProjectsDetails = () => {
-  let { id } = useParams<Params>();
+  let { userId } = useParams<Params>();
   const [projectDetails, setProjectDetails] = useState<Project>();
 
   /* CONFIGURACION DE SWEETALERT2 */
@@ -51,10 +51,10 @@ export const ProjectsDetails = () => {
   };
 
   useEffect(() => {
-    axios.get(`${back}/projects/${id}`).then((res) => {
+    axios.get(`${back}/projects/${userId}`).then((res) => {
       setProjectDetails(res.data);
     });
-  }, [id]);
+  }, [userId]);
 
   return (
     <div className='container-fluid '>
@@ -147,7 +147,7 @@ export const ProjectsDetails = () => {
               <button
                 type='button'
                 className='btn btn-outline-danger fist-btn'
-                onClick={(event) => handleDelete(id, event)}
+                onClick={(event) => handleDelete(userId, event)}
               >
                 Eliminar proyecto
               </button>
