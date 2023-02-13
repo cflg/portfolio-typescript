@@ -19,7 +19,7 @@ interface Params {
 }
 
 export const ProjectsDetails = () => {
-  const { id } = useParams<Params>();
+  let { id } = useParams<Params>();
   const [projectDetails, setProjectDetails] = useState<Project>();
 
   /* CONFIGURACION DE SWEETALERT2 */

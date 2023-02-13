@@ -5,13 +5,13 @@ import './App.css';
 import { UserActions } from './pages/UserActions/UserActions';
 import { Error } from './components/Error/Error';
 import New from './components/NewComponent/New';
+import { ProjectsDetails } from './components/ProjectsDetails/ProjectsDetails';
 
 function App() {
   return (
     <Routes>
       <Route path='/admin' element={<UserActions />} />
-      <Route path='/new/:userId' element={<New />} />
-      <Route path='/abc' element={<New />} />
+      <Route path='/project/:userId' element={<ProjectsDetails />} />
       <Route path='/error' element={<Error />} />
       <Route path='/' element={<Home />} />
       <Route path='*' element={<Error />} />
