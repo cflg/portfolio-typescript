@@ -4,23 +4,33 @@ import { back } from '../../../urls';
 import axios from 'axios';
 
 const New = () => {
-  const { id } = useParams();
+  try {
+    const { id } = useParams();
 
-  const [project, setProject] = useState<any>(null);
+    const [project, setProject] = useState<any>(null);
 
-  useEffect(() => {
-    if (id) {
-      axios.get(`${back}/projects/${id}`).then((res) => {
-        setProject(res.data);
-      });
-    }
-  }, [id]);
+    useEffect(() => {
+      if (id) {
+        axios.get(`${back}/projects/${id}`).then((res) => {
+          setProject(res.data);
+        });
+      }
+    }, [id]);
 
-  return (
-    <div>
-      <p>Componente nuevo</p>
-      <p>{project && project.id}</p>
-    </div>
-  );
+    return (
+      <div>
+        <p>Componente nuevo</p>
+        <p>{project && project.id}</p>
+      </div>
+    );
+  } catch (error) {
+    console.log(error);
+    return (
+      <div>
+        <p>Componente nuevo</p>
+        <p>Error</p>
+      </div>
+    );
+  }
 };
 export default New;
