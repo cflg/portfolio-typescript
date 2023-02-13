@@ -12,7 +12,7 @@ function App() {
     <Routes>
       <Route path='/admin' element={<UserActions />} />
       <Route path='/projects' element={<Projects />} />
-      <Route path='/new' element={<New />} />
+      <Route path='/new/:id' element={<New />} />
       <Route path='/error' element={<Error />} />
       <Route path='/' element={<Home />} />
       <Route path='*' element={<Error />} />
