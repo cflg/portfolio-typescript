@@ -7,7 +7,7 @@ export const Header = () => {
       <p className='text-white'>Cristian Lo Giudice</p>
       <Link to='/'>Sobre mi</Link>
       <Link to='/'>Mis habilidades</Link>
-      <Link to='/'>Mis proyectos</Link>
+      <Link to='/new'>Mis proyectos</Link>
       <Link to='/admin'>Admin</Link>
     </header>
   );
