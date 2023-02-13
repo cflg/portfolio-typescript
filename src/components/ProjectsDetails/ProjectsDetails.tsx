@@ -14,8 +14,12 @@ export interface Project {
   description: string;
   imgs: string[];
 }
+interface Params {
+  [key: string]: string;
+}
 
-export const ProjectsDetails = ({ id }) => {
+export const ProjectsDetails = () => {
+  const { id } = useParams<Params>();
   const [projectDetails, setProjectDetails] = useState<Project>();
 
   /* CONFIGURACION DE SWEETALERT2 */

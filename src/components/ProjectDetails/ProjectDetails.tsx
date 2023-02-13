@@ -3,14 +3,8 @@ import { ProjectsDetails } from '../ProjectsDetails/ProjectsDetails';
 import { Header } from '../Header/Header';
 import './ProjectDetails.css';
 import { Footer } from '../Footer/Footer';
-import { useParams } from 'react-router-dom';
-
-interface Params {
-  [key: string]: string;
-}
 
 export const ProjectDetails = () => {
-  const { id } = useParams<Params>();
   return (
     <div className='container-fluid details-container'>
       <Header />
@@ -19,7 +13,7 @@ export const ProjectDetails = () => {
           ↲ Volver
         </button>
       </a>
-      <ProjectsDetails id={id} />
+      <ProjectsDetails />
       <Footer />
     </div>
   );
