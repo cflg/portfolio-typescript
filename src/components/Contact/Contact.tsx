@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Contact.css';
-import { useForm, ValidationError } from '@formspree/react';
 import Swal from 'sweetalert2';
+import axios from 'axios';
+import { back } from '../../../urls';
+
+interface newEmail {
+  name: string;
+  email: string;
+  message: string;
+}
+
+type FormElements = HTMLInputElement | HTMLTextAreaElement;
 
 export const Contact = () => {
-  const [state, handleSubmit] = useForm('xzbqdnlk');
+  const [message, setMessage] = useState<newEmail>({
+    name: '',
+    email: '',
+    message: '',
+  });
 
   const Toast = Swal.mixin({
     toast: true,
@@ -17,13 +30,22 @@ export const Contact = () => {
       toast.addEventListener('mouseleave', Swal.resumeTimer);
     },
   });
-
-  if (state.succeeded) {
+  const handleChange = (e: React.ChangeEvent<FormElements>) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setMessage({
+      ...message,
+      [name]: value,
+    });
+  };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await axios.post(`${back}/email`, message);
     Toast.fire({
       icon: 'success',
-      title: 'Gracias por enviarme un mensaje, respoderé a la brevedad!',
+      title: 'Gracias por enviarme un mensaje, te respoderé en breve!',
     });
-  }
+  };
   return (
     <div className='container'>
       <h1 className='msg-title text-center'>Enviame un mensaje</h1>
@@ -49,11 +71,7 @@ export const Contact = () => {
           className='form-control msg-input'
           rows={10}
         />
-        <button
-          type='submit'
-          disabled={state.submitting}
-          className='btn btn-dark'
-        >
+        <button type='submit' className='btn btn-dark'>
           Enviar mensaje
         </button>
       </form>
