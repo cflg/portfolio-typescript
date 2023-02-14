@@ -13,7 +13,7 @@ interface newEmail {
 type FormElements = HTMLInputElement | HTMLTextAreaElement;
 
 export const Contact = () => {
-  const [message, setMessage] = useState<newEmail>({
+  const [mail, setMail] = useState<newEmail>({
     name: '',
     email: '',
     message: '',
@@ -33,14 +33,14 @@ export const Contact = () => {
   const handleChange = (e: React.ChangeEvent<FormElements>) => {
     const name = e.target.name;
     const value = e.target.value;
-    setMessage({
-      ...message,
+    setMail({
+      ...mail,
       [name]: value,
     });
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await axios.post(`${back}/email`, message);
+    await axios.post(`${back}/email`, mail);
     Toast.fire({
       icon: 'success',
       title: 'Gracias por enviarme un mensaje, te respoderé en breve!',
@@ -48,7 +48,7 @@ export const Contact = () => {
   };
   return (
     <div className='container'>
-      <h1 className='msg-title text-center'>Enviame un mensaje</h1>
+      <h1 className='msg-title text-center'>Enviame un mensaje 👇</h1>
       <form onSubmit={handleSubmit} className='container'>
         <input
           type='text'
@@ -56,6 +56,7 @@ export const Contact = () => {
           id='full-name'
           placeholder='Tu nombre'
           className='form-control msg-input'
+          onChange={handleChange}
         ></input>
         <input
           id='email'
@@ -63,12 +64,14 @@ export const Contact = () => {
           name='email'
           placeholder='Tu correo'
           className='form-control msg-input'
+          onChange={handleChange}
         />
         <textarea
           id='message'
           name='message'
           placeholder='Tu mensaje'
           className='form-control msg-input'
+          onChange={handleChange}
           rows={10}
         />
         <button type='submit' className='btn btn-dark'>
