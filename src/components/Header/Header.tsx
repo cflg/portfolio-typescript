@@ -10,7 +10,7 @@ export const Header = ({ user }) => {
       <Link to='#about'>Sobre mi</Link>
       <Link to='/abc'>Mis habilidades</Link>
       <Link to='#myprojects'>Mis proyectos</Link>
-
+      <Link to='/login'>Iniciar sesión</Link>
       {user && user === 'cflg.dev@gmail.com' && (
         <>
           <Link to='/admin'>Admin</Link>
