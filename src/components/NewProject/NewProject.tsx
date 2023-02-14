@@ -18,6 +18,7 @@ export interface Project {
   deploy: string;
   repo: string;
   video: string;
+  tech: string[];
   description: string;
   imgs: string[];
 }
@@ -31,6 +32,8 @@ interface CloudinaryResult {
 
 type FormElements = HTMLInputElement | HTMLTextAreaElement;
 
+type Skill = HTMLButtonElement;
+
 /* INICIO DEL COMPONENTE */
 
 export const NewProject = () => {
@@ -40,9 +43,11 @@ export const NewProject = () => {
     deploy: '',
     repo: '',
     video: '',
+    tech: [],
     description: '',
     imgs: [],
   });
+  const [skill, setSkill] = useState<string[]>([]);
 
   /* CONFIGURACION DE SWEETALERT2 */
 
@@ -72,6 +77,17 @@ export const NewProject = () => {
     });
   };
 
+  const handleSkills = (e) => {
+    setSkill([...skill, e.target.value]);
+  };
+
+  const setTech = () => {
+    setProject({
+      ...project,
+      tech: [...project.tech, skill[skill.length - 1]],
+    });
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.code === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -94,6 +110,7 @@ export const NewProject = () => {
       deploy: '',
       repo: '',
       video: '',
+      tech: [],
       description: '',
       imgs: [],
     });
@@ -111,6 +128,13 @@ export const NewProject = () => {
     setProject({
       ...project,
       imgs: project.imgs.filter((el) => el !== imageSrc),
+    });
+  };
+
+  const deleteSkill = (value: string) => {
+    setProject({
+      ...project,
+      tech: project.tech.filter((el) => el !== value),
     });
   };
 
@@ -186,7 +210,42 @@ export const NewProject = () => {
               onChange={handleChange}
             />
           </div>
-
+          <div className='form-group'>
+            <label htmlFor='tech' className='form-label labels'>
+              Tecnologías usadas
+            </label>
+            <div className='row skill-container'>
+              <input
+                type='text'
+                className='form-control skill-input col-8'
+                name='tech'
+                onChange={handleSkills}
+              />
+              <button
+                className='btn btn-primary add-skill col-4'
+                onClick={() => setTech()}
+              >
+                Agregar
+              </button>
+            </div>
+            <div className='skills-container'>
+              {project.tech &&
+                project.tech.map((skill) => (
+                  <button
+                    type='button'
+                    className='btn btn-primary position-relative display-skill'
+                  >
+                    {skill}
+                    <span
+                      className='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger'
+                      onClick={() => deleteSkill(skill)}
+                    >
+                      ✗
+                    </span>
+                  </button>
+                ))}
+            </div>
+          </div>
           <div className='form-group'>
             <label htmlFor='description' className='form-label labels'>
               Describí el proyecto

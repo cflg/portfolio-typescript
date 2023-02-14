@@ -33,3 +33,21 @@
 .img-cont {
   margin-left: -6px;
 }
+.skill-input {
+  width: 65%;
+}
+.add-skill {
+  width: 30%;
+}
+.skill-container {
+  justify-content: space-between;
+  margin-left: 0;
+  margin-right: 0;
+}
+.display-skill {
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+.skills-container {
+  margin-top: 15px;
+}

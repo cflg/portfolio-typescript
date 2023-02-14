@@ -4,15 +4,13 @@ import { Home } from './pages/Home/Home';
 import './App.css';
 import { UserActions } from './pages/UserActions/UserActions';
 import { Error } from './components/Error/Error';
-import New from './components/NewComponent/New';
-import { ProjectsDetails } from './components/ProjectsDetails/ProjectsDetails';
+import ProjectDetailContainer from './components/ProjectDetailContainer/ProjectDetailContainer';
 
 function App() {
   return (
     <Routes>
       <Route path='/admin' element={<UserActions />} />
-      <Route path='/project/:userId' element={<ProjectsDetails />} />
-      <Route path='/error' element={<Error />} />
+      <Route path='/project/:userId' element={<ProjectDetailContainer />} />
       <Route path='/' element={<Home />} />
       <Route path='*' element={<Error />} />
     </Routes>
