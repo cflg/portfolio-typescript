@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { back } from '../../../urls';
 import axios from 'axios';
 import './ProjectsDetails.css';
@@ -11,6 +11,7 @@ export interface Project {
   deploy: string;
   repo: string;
   video: string;
+  tech: string[];
   description: string;
   imgs: string[];
 }
@@ -136,6 +137,17 @@ export const ProjectsDetails = () => {
                   </a>
                 </div>
               </div>
+              <div className='skills-detail'>
+                {projectDetails.tech &&
+                  projectDetails.tech.map((el) => (
+                    <button
+                      type='button'
+                      className='btn btn-warning btn-skill-detail'
+                    >
+                      {el}
+                    </button>
+                  ))}
+              </div>
               {projectDetails.description.split('\n').map((line, index) => {
                 return (
                   <p className='card-text' key={index}>
@@ -153,7 +165,7 @@ export const ProjectsDetails = () => {
                 Eliminar proyecto
               </button>
               <button type='button' className='btn btn-outline-warning'>
-                Editar proyecto
+                <Link to={`/update/${userId}`}>Editar proyecto</Link>
               </button>
             </div>
           </div>

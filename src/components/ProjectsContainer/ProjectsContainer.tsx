@@ -23,7 +23,7 @@ export const ProjectsContainer = () => {
   }, []);
 
   return (
-    <div className='container-fluid row projects-container'>
+    <div className='container-fluid row projects-container' id='myprojects'>
       <h1 className='text-center projects-title'>Mis proyectos</h1>
 
       {projects && projects.map((el) => <ProjectCards pr={el} key={el.id} />)}

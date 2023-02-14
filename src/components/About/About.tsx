@@ -42,7 +42,7 @@ export const About = () => {
   };
   console.log(about);
   return (
-    <div className='container about-container'>
+    <div className='container about-container' id='about'>
       <h1 className='about-title'>Sobre mi</h1>
       {about &&
         Array.isArray(about) &&

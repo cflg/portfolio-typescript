@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import './NewProject.css';
 import axios from 'axios';
 import { back } from '../../../urls';
+import { useParams } from 'react-router-dom';
 
 /* INTERFACES Y ELEMENTOS DE TYPESCRIPT */
 
@@ -37,6 +38,8 @@ type Skill = HTMLButtonElement;
 /* INICIO DEL COMPONENTE */
 
 export const NewProject = () => {
+  let { id } = useParams();
+
   /* ESTADO PARA ALMACENAR DATOS DEL FORMULARIO */
   const [project, setProject] = useState<Project>({
     title: '',
@@ -62,7 +65,7 @@ export const NewProject = () => {
       toast.addEventListener('mouseleave', Swal.resumeTimer);
     },
   });
-
+  //handlers
   const handleChange = (e: React.ChangeEvent<FormElements>) => {
     let value = e.target.value;
 
@@ -103,7 +106,12 @@ export const NewProject = () => {
     //Esta linea es para que no se recargue la pagina
     e.preventDefault();
     //funcion para agregar proyectos a la db
-    await axios.post(`${back}/projects`, project);
+    if (id) {
+      await axios.put(`${back}/projects/${id}`, project);
+    } else {
+      await axios.post(`${back}/projects`, project);
+    }
+
     //Este set sirve para limpiar los inputs cuando se postea un proyecto
     setProject({
       title: '',
@@ -157,6 +165,11 @@ export const NewProject = () => {
     );
     myWidget.open();
   };
+
+  useEffect(() => {
+    axios.get(`${back}/projects/${id}`).then((res) => setProject(res.data));
+  }, [id]);
+
   /* ---------- FIN DE LA FUNCION DE CLOUDINARY ---------- */
   return (
     <form onSubmit={handleSubmit} className='container'>
@@ -222,6 +235,7 @@ export const NewProject = () => {
                 onChange={handleSkills}
               />
               <button
+                type='button'
                 className='btn btn-primary add-skill col-4'
                 onClick={() => setTech()}
               >
@@ -289,9 +303,15 @@ export const NewProject = () => {
           </div>
         </div>
       </div>
-      <button type='submit' className='btn btn-outline-success w-50 '>
-        Subir mi proyecto
-      </button>
+      {id ? (
+        <button type='submit' className='btn btn-outline-success w-50 '>
+          Actualizar mi proyecto
+        </button>
+      ) : (
+        <button type='submit' className='btn btn-outline-success w-50 '>
+          Subir mi proyecto
+        </button>
+      )}
     </form>
   );
 };

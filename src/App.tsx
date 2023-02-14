@@ -11,6 +11,7 @@ function App() {
     <Routes>
       <Route path='/admin' element={<UserActions />} />
       <Route path='/project/:userId' element={<ProjectDetailContainer />} />
+      <Route path='/update/:id' element={<UserActions />} />
       <Route path='/' element={<Home />} />
       <Route path='*' element={<Error />} />
     </Routes>

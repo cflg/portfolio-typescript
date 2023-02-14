@@ -21,6 +21,12 @@ export const ProjectCards: React.FC<ProjectCardsProps> = ({ pr }) => {
 
         <div className='card-body'>
           <h5 className='card-title'>{pr.title}</h5>
+          {pr.tech &&
+            pr.tech.map((el: string) => (
+              <span className='badge rounded-pill text-bg-warning card-skills'>
+                {el}
+              </span>
+            ))}
           <p className='card-text'>{pr.description.slice(0, 240)} (...)</p>
           <Link to={`/project/${pr.id}`} className='btn btn-primary card-more'>
             Ver proyecto completo
