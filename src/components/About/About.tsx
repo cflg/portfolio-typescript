@@ -10,7 +10,7 @@ interface AboutData {
   me: string;
 }
 
-export const About = () => {
+export const About = ({ user }) => {
   /* CONFIGURACION DE SWEETALERT2 */
 
   const Toast = Swal.mixin({
@@ -50,21 +50,23 @@ export const About = () => {
         about.map((el) => (
           <div className='container column'>
             <p className='text-about'>{el.me}</p>
-            <div className='row btn-about-container'>
-              <button
-                type='submit'
-                className='btn btn-outline-danger btn-delete-about col-5'
-                onClick={() => handleDelete(el.id)}
-              >
-                Borrar
-              </button>
-              <button
-                type='submit'
-                className='btn btn-outline-warning btn-delete-about col-5'
-              >
-                <Link to={`update-about/${el.id}`}>Editar</Link>
-              </button>
-            </div>
+            {user && user === 'cflg.dev@gmail.com' && (
+              <div className='row btn-about-container'>
+                <button
+                  type='submit'
+                  className='btn btn-outline-danger btn-delete-about col-5'
+                  onClick={() => handleDelete(el.id)}
+                >
+                  Borrar
+                </button>
+                <button
+                  type='submit'
+                  className='btn btn-outline-warning btn-delete-about col-5'
+                >
+                  <Link to={`update-about/${el.id}`}>Editar</Link>
+                </button>
+              </div>
+            )}
           </div>
         ))}
     </div>

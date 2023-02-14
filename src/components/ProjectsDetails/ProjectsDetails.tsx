@@ -6,6 +6,7 @@ import './ProjectsDetails.css';
 import { GrGithub } from 'react-icons/gr';
 import { TbWorld } from 'react-icons/tb';
 import Swal from 'sweetalert2';
+import { useAuth0 } from '@auth0/auth0-react';
 export interface Project {
   title: string;
   deploy: string;
@@ -23,6 +24,12 @@ export const ProjectsDetails = () => {
   let { userId } = useParams<Params>();
 
   const [projectDetails, setProjectDetails] = useState<Project>();
+  /* AUTH0 */
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  let userEmail: string | undefined = '';
+  if (!isLoading && isAuthenticated && user) {
+    userEmail = user.email;
+  }
 
   /* CONFIGURACION DE SWEETALERT2 */
 
@@ -156,18 +163,20 @@ export const ProjectsDetails = () => {
                 );
               })}
             </div>
-            <div className='container btns-box'>
-              <button
-                type='button'
-                className='btn btn-outline-danger fist-btn'
-                onClick={(event) => handleDelete(userId, event)}
-              >
-                Eliminar proyecto
-              </button>
-              <button type='button' className='btn btn-outline-warning'>
-                <Link to={`/update/${userId}`}>Editar proyecto</Link>
-              </button>
-            </div>
+            {userEmail && userEmail === 'cflg.dev@gmail.com' && (
+              <div className='container btns-box'>
+                <button
+                  type='button'
+                  className='btn btn-outline-danger fist-btn'
+                  onClick={(event) => handleDelete(userId, event)}
+                >
+                  Eliminar proyecto
+                </button>
+                <button type='button' className='btn btn-outline-warning'>
+                  <Link to={`/update/${userId}`}>Editar proyecto</Link>
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>
