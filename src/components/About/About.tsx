@@ -3,6 +3,7 @@ import { back } from '../../../urls';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import './About.css';
+import { Link } from 'react-router-dom';
 
 interface AboutData {
   id: string;
@@ -40,22 +41,30 @@ export const About = () => {
       title: 'La info fué borrada!',
     });
   };
-  console.log(about);
+
   return (
     <div className='container about-container' id='about'>
       <h1 className='about-title'>Sobre mi</h1>
       {about &&
         Array.isArray(about) &&
         about.map((el) => (
-          <div>
+          <div className='container column'>
             <p className='text-about'>{el.me}</p>
-            <button
-              type='submit'
-              className='btn btn-outline-danger btn-delete-about'
-              onClick={() => handleDelete(el.id)}
-            >
-              Borrar
-            </button>
+            <div className='row btn-about-container'>
+              <button
+                type='submit'
+                className='btn btn-outline-danger btn-delete-about col-5'
+                onClick={() => handleDelete(el.id)}
+              >
+                Borrar
+              </button>
+              <button
+                type='submit'
+                className='btn btn-outline-warning btn-delete-about col-5'
+              >
+                <Link to={`update-about/${el.id}`}>Editar</Link>
+              </button>
+            </div>
           </div>
         ))}
     </div>

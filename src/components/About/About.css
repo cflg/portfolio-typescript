@@ -13,3 +13,6 @@
 .about-container {
   margin-top: 20px;
 }
+.btn-about-container {
+  justify-content: space-between;
+}
