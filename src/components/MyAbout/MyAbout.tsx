@@ -61,7 +61,7 @@ export const MyAbout = () => {
     <div className='container form-about'>
       <form onSubmit={handleSubmit}>
         <div className='form-group'>
-          <label htmlFor='title' className='form-label'>
+          <label htmlFor='title' className='form-label myabout'>
             Escribir sobre mi:
           </label>
           <textarea
@@ -73,17 +73,11 @@ export const MyAbout = () => {
           />
         </div>
         {aboutId ? (
-          <button
-            type='submit'
-            className='btn btn-outline-success w-50 about-btn'
-          >
+          <button type='submit' className='btn w-50 about-btn'>
             Editar
           </button>
         ) : (
-          <button
-            type='submit'
-            className='btn btn-outline-success w-50 about-btn'
-          >
+          <button type='submit' className='btn w-50 about-btn'>
             Enviar
           </button>
         )}

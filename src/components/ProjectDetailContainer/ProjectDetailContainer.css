@@ -1,6 +1,7 @@
-.details-container {
-  margin: 0;
-}
 .btn-details {
   margin: 20px;
+}
+#details-container {
+  padding-left: 0px;
+  padding-right: 0px;
 }

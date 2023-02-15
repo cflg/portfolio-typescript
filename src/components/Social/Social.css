@@ -12,7 +12,7 @@
 }
 .linkedin:hover {
   transform: scale(1.5) rotate(360deg);
-  color: #0077b7;
+  color: #66ce91;
 }
 .footer-icons {
   display: flex;

@@ -1,3 +1,7 @@
+:root {
+  padding-left: 0;
+  padding-right: 0;
+}
 body {
   box-sizing: border-box;
   margin: 0;
@@ -117,4 +121,8 @@ body {
 ol,
 ul {
   list-style: none;
+}
+body {
+  background: rgb(19, 91, 96);
+  background: linear-gradient(315deg, #66ce91 0%, rgba(13, 17, 34, 1) 100%);
 }

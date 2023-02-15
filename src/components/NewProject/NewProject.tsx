@@ -176,7 +176,7 @@ export const NewProject = () => {
       <div className='row elm-cont'>
         <div className='col-6'>
           <div className='form-group'>
-            <label htmlFor='title' className='form-label'>
+            <label htmlFor='title' className='form-label project-name'>
               Nombre del proyecto
             </label>
             <input
@@ -236,7 +236,7 @@ export const NewProject = () => {
               />
               <button
                 type='button'
-                className='btn btn-primary add-skill col-4'
+                className='btn project-btn add-skill col-4'
                 onClick={() => setTech()}
               >
                 Agregar
@@ -274,11 +274,11 @@ export const NewProject = () => {
             ></textarea>
           </div>
         </div>
-        <div className='col-6 imgs'>
+        <div className='col-6 imgs img-box'>
           <div className='form-group'>
             <button
               id='upload_widget'
-              className='btn btn-primary btn-img w-100'
+              className='btn project-btn btn-img w-100'
               type='button'
               name='imgs'
               onClick={() => handleOpenWidget()}
@@ -304,11 +304,11 @@ export const NewProject = () => {
         </div>
       </div>
       {id ? (
-        <button type='submit' className='btn btn-outline-success w-50 '>
+        <button type='submit' className='btn project-btn btn-pro w-50 '>
           Actualizar mi proyecto
         </button>
       ) : (
-        <button type='submit' className='btn btn-outline-success w-50 '>
+        <button type='submit' className='btn project-btn btn-pro  w-50 '>
           Subir mi proyecto
         </button>
       )}

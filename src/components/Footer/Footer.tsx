@@ -5,7 +5,7 @@ import { Social } from '../Social/Social';
 
 export const Footer = () => {
   return (
-    <footer className='row footer bg-black'>
+    <footer className='row footer' id='footer'>
       <div className='col-6'>
         <Contact />
       </div>

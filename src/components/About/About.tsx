@@ -63,7 +63,9 @@ export const About = ({ user }) => {
                   type='submit'
                   className='btn btn-outline-warning btn-delete-about col-5'
                 >
-                  <Link to={`update-about/${el.id}`}>Editar</Link>
+                  <Link to={`update-about/${el.id}`} className='btn-edit '>
+                    Editar
+                  </Link>
                 </button>
               </div>
             )}

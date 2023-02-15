@@ -15,9 +15,7 @@ export const UserActions = () => {
     <>
       <Header user={userEmail} />
       <Link to='/'>
-        <button className='btn btn-outline-secondary btn-details'>
-          ↵ Volver
-        </button>
+        <button className='btn btn-secondary btn-details'>↵ Volver</button>
       </Link>
       {userEmail && userEmail === 'cflg.dev@gmail.com' && (
         <>

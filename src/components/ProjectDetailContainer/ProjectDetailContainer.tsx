@@ -12,7 +12,7 @@ const ProjectDetailContainer = () => {
     userEmail = user.email;
   }
   return (
-    <div className='container-fluid details-container'>
+    <div className='container-fluid details-container' id='details-container'>
       <Header user={userEmail} />
       <Link to='/'>
         <button className='btn btn-outline-secondary btn-details'>

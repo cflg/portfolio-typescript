@@ -1,0 +1,47 @@
+.header-container {
+  background-color: rgba(0, 0, 0, 0.75);
+  margin: 0;
+}
+.myname {
+  color: #f2f2f2;
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 30px;
+}
+.headers-links {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #66ce91;
+  margin-right: 10px;
+  transition: all 0.3s;
+}
+.headers-links:hover {
+  transform: scale(1.2);
+  color: #f2f2f2;
+}
+.btn-logout {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  padding: 5px;
+  color: #66ce91;
+}
+.links-containers {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.admin-links {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #66ce91;
+  transition: all 0.3s;
+  background-color: transparent;
+  border: none;
+}
+.admin-links:hover {
+  transform: scale(1.5);
+}
+.admin {
+  margin-right: 20px;
+}

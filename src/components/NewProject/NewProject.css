@@ -27,8 +27,12 @@
   width: min-content;
   padding: 0;
 }
+.project-name {
+  color: #f2f2f2;
+}
 .labels {
   margin-top: 20px;
+  color: #f2f2f2;
 }
 .img-cont {
   margin-left: -6px;
@@ -50,4 +54,15 @@
 }
 .skills-container {
   margin-top: 15px;
+}
+.project-btn {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #f2f2f2;
+}
+.project-btn:hover {
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #f2f2f2;
+}
+.img-box {
+  background-color: white;
 }

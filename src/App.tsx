@@ -5,7 +5,6 @@ import './App.css';
 import { UserActions } from './pages/UserActions/UserActions';
 import { Error } from './components/Error/Error';
 import ProjectDetailContainer from './components/ProjectDetailContainer/ProjectDetailContainer';
-import Login from './components/Login/Login';
 
 function App() {
   return (
@@ -14,7 +13,6 @@ function App() {
       <Route path='/project/:userId' element={<ProjectDetailContainer />} />
       <Route path='/update/:id' element={<UserActions />} />
       <Route path='/update-about/:aboutId' element={<UserActions />} />
-      <Route path='/login' element={<Login />} />
       <Route path='/' element={<Home />} />
       <Route path='*' element={<Error />} />
     </Routes>
