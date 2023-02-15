@@ -9,7 +9,7 @@ interface ProjectCardsProps {
 
 export const ProjectCards: React.FC<ProjectCardsProps> = ({ pr }) => {
   return (
-    <div className='container-fluid card-box w-50 col-6'>
+    <div className='container-fluid card-box col-md-6 col-12'>
       <div className='card'>
         <div className='img-card-container'>
           <img
