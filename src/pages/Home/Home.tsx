@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer/Footer';
 import { ProjectsContainer } from '../../components/ProjectsContainer/ProjectsContainer';
@@ -12,6 +12,9 @@ export const Home = () => {
   if (!isLoading && isAuthenticated && user) {
     userEmail = user.email;
   }
+  useEffect(() => {
+    document.title = 'Cristian Lo Giudice ⚡ Web Developer';
+  }, []);
 
   return (
     <div className='container-fluid home'>
