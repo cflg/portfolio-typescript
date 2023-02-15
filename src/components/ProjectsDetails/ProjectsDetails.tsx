@@ -63,7 +63,10 @@ export const ProjectsDetails = () => {
     axios.get(`${back}/projects/${userId}`).then((res) => {
       setProjectDetails(res.data);
     });
-  }, [userId]);
+    if (projectDetails) {
+      document.title = `${projectDetails.title}`;
+    }
+  }, [userId, projectDetails]);
 
   return (
     <div className='container-fluid '>

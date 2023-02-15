@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header } from '../../components/Header/Header';
 import { NewProject } from '../../components/NewProject/NewProject';
 import { MyAbout } from '../../components/MyAbout/MyAbout';
@@ -11,6 +11,10 @@ export const UserActions = () => {
   if (!isLoading && isAuthenticated && user) {
     userEmail = user.email;
   }
+  useEffect(() => {
+    document.title = `Panel de administrador`;
+  }, []);
+
   return (
     <>
       <Header user={userEmail} />
