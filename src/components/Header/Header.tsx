@@ -50,6 +50,18 @@ export const Header = ({ user }) => {
                 </button>
               </>
             )}
+            {user && user !== 'cflg.dev@gmail.com' && (
+              <button
+                className='admin-links'
+                onClick={() =>
+                  logout({
+                    logoutParams: { returnTo: window.location.origin },
+                  })
+                }
+              >
+                <FiLogOut />
+              </button>
+            )}
           </div>
         </div>
       </div>

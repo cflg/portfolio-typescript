@@ -41,6 +41,11 @@ export const Contact = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await axios.post(`${back}/email`, mail);
+    setMail({
+      name: '',
+      email: '',
+      message: '',
+    });
     Toast.fire({
       icon: 'success',
       title: 'Gracias por enviarme un mensaje, te respoderé en breve!',
