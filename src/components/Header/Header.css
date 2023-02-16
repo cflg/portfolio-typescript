@@ -45,3 +45,8 @@
 .admin {
   margin-right: 20px;
 }
+.cv {
+  background-color: rgba(128, 128, 128, 0.25);
+  padding: 3px;
+  border-radius: 3px;
+}

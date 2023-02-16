@@ -20,6 +20,13 @@ export const Header = ({ user }) => {
             <Link to='/#myprojects' className='headers-links'>
               Mis proyectos
             </Link>
+            <Link
+              target='_blank'
+              to='https://docs.google.com/document/d/1I0rwEfhM6c2npZSwMKRh2FcmJ0xKk8ZroLU6EOm3guk/edit?usp=sharing'
+              className='headers-links cv'
+            >
+              Mi CV
+            </Link>
           </div>
 
           <div>
