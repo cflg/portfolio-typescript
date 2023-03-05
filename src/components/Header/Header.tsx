@@ -7,7 +7,7 @@ import { FiLogOut, FiLogIn } from 'react-icons/fi';
 export const Header = ({ user }) => {
   const { logout, loginWithRedirect } = useAuth0();
   return (
-    <header className='container-fluid p-5 header-container row'>
+    <header className='p-5 header-container row'>
       <div className='col'>
         <div>
           <p className='myname'>Cristian Lo Giudice</p>

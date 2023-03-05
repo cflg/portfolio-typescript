@@ -1,10 +1,13 @@
 .footer {
   padding: 20px;
-  padding-bottom: 10px;
   margin: 0;
   background-color: rgba(0, 0, 0, 0.75);
 }
 #footer {
   padding-left: 0;
   padding-right: 0;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  border-radius: 10px;
 }
